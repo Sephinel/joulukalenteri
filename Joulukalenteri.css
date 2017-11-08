@@ -146,13 +146,14 @@
     position: relative;
     width: 2.75em;
     height: 2.75em;
-    background: #a94b61;
+    background: url(http://myy.haaga-helia.fi/~a1704538/images/meepo.jpg);
     margin: 25% auto 0 auto;
     font-size: 2em;
     font-weight: bold;
     line-height: 2.75em;
     color: white;
     border-radius: 50%;
+    background-size: cover;
 }
 
 .bauble:after {
