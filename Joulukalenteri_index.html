@@ -20,17 +20,20 @@
     <script>
         var HTML = '<div class="article" onclick=""><div class="box closedDoor"><h2>@@@</h2></div><div class="present"><div class="bauble"></div></div></div>';
         var dateObj = new Date();
-        var monthNo = dateObj.getMonth();
+        var monthNo = dateObj.getMonth()+1;
         var dayNo = dateObj.getDate();
         var adventBoxesHTML = '';
         var newHTML = '';
+        
+        //MONTHNo = CURRENT MONTH IF DEV. FOR PRODUCTION SET monthNo != 12
         if (monthNo != 11) {
             dayNo = 25; // so that the rest of the year the doors are always open
         }
         
         for(var i=0; i<25; i++){
-            newHTML = HTML.replace('@@@', i);
-            if (i <= dayNo) {
+            newHTML = HTML.replace('@@@', i+1);
+            if (i < dayNo) {
+                console.log(i);
                 newHTML = newHTML.replace('closedDoor', 'openDoor');
                 newHTML = newHTML.link("http://myy.haagahelia.fi/~a1704538/Redirect/" + i);
             }
@@ -41,7 +44,6 @@
         
         for(var j=0; j<baubles.length; j++){
             baubles.item(j).style.background = "url('http://myy.haagahelia.fi/~a1704538/images/"+(j+1)+"')";
-            console.log(baubles.item(j).style);
         }
 
     </script>
