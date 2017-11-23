@@ -2,38 +2,55 @@
 <html>
 
 <head>
+    
     <meta charset="utf-8">
     <title>Joulukalenteri</title>
     <link href="Joulukalenteri.css" rel="stylesheet" media="all">
 </head>
 
 <body>
+    
     <div id="main">
         <h1>2017 Dota Calendar</h1>
         <div id="adventBoxes"></div>
     </div>
     <div id="snow">
     </div>
+   
     <script>
-        var HTML = '<div class="article" onclick=""><div class="box closedDoor"><h2>@@@</h2></div><div class="present"><div class="bauble">?</div></div></div>';
+        var HTML = '<div class="article" onclick=""><div class="box closedDoor"><h2>@@@</h2></div><div class="present"><div class="bauble"></div></div></div>';
         var dateObj = new Date();
-        var monthNo = dateObj.getMonth();
+        var monthNo = dateObj.getMonth()+1;
         var dayNo = dateObj.getDate();
         var adventBoxesHTML = '';
         var newHTML = '';
+        
+        //MONTHNo = CURRENT MONTH IF DEV. FOR PRODUCTION SET monthNo != 12
         if (monthNo != 11) {
             dayNo = 25; // so that the rest of the year the doors are always open
         }
-        for (vv = 1; vv < 25; vv++) {
-            newHTML = HTML.replace('@@@', vv);
-            if (vv <= dayNo) {
+        
+        for(var i=0; i<24; i++){
+            newHTML = HTML.replace('@@@', i+1);
+            if (i < dayNo) {
+                console.log(i);
                 newHTML = newHTML.replace('closedDoor', 'openDoor');
-                newHTML = newHTML.link('/advent/2016/' + vv);
+                newHTML = newHTML.link("http://myy.haagahelia.fi/~a1704538/Redirect/" + i);
             }
-            adventBoxesHTML += newHTML;
+             adventBoxesHTML += newHTML;
         }
         document.getElementById("adventBoxes").innerHTML = adventBoxesHTML;
+        var baubles = document.getElementsByClassName("bauble");
+        var articles = document.getElementsByClassName("box");
+        
+        for(var j=k=0; j<baubles.length && k<articles.length; j++, k++){
+            baubles.item(j).style.background = "url('http://myy.haaga-helia.fi/~a1704538/images/"+(j+'a')+"')";
+             articles.item(k).style.background = "url('http:myy.haaga-helia.fi/~a1704538/images/"+(k+1)+"')";
+            
+                }
+
     </script>
+         
 </body>
 
 </html>
