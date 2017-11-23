@@ -6,10 +6,13 @@
     <meta charset="utf-8">
     <title>Joulukalenteri</title>
     <link href="Joulukalenteri.css" rel="stylesheet" media="all">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <body>
-    
+    <div id="bg">
+        <!-- <img src="http://myy.haaga-helia.fi/~a1704538/images/christmasbase.jpg" alt=""> -->
+    </div>
     <div id="main">
         <h1>2017 Dota Calendar</h1>
         <div id="adventBoxes"></div>
@@ -24,7 +27,7 @@
         var dayNo = dateObj.getDate();
         var adventBoxesHTML = '';
         var newHTML = '';
-        
+
         //MONTHNo = CURRENT MONTH IF DEV. FOR PRODUCTION SET monthNo != 12
         if (monthNo != 11) {
             dayNo = 25; // so that the rest of the year the doors are always open
@@ -33,7 +36,6 @@
         for(var i=0; i<24; i++){
             newHTML = HTML.replace('@@@', i+1);
             if (i < dayNo) {
-                console.log(i);
                 newHTML = newHTML.replace('closedDoor', 'openDoor');
                 newHTML = newHTML.link("http://myy.haagahelia.fi/~a1704538/Redirect/" + i);
             }
@@ -42,13 +44,35 @@
         document.getElementById("adventBoxes").innerHTML = adventBoxesHTML;
         var baubles = document.getElementsByClassName("bauble");
         var articles = document.getElementsByClassName("box");
-        
-        for(var j=k=0; j<baubles.length && k<articles.length; j++, k++){
-            baubles.item(j).style.background = "url('http://myy.haaga-helia.fi/~a1704538/images/"+(j+'a')+"')";
-             articles.item(k).style.background = "url('http:myy.haaga-helia.fi/~a1704538/images/"+(k+1)+"')";
-            
-                }
+        console.log(articles);
+        //use j, no reason to use multiple vars and eat memory. articles and baubles will always be same length
+        for(var j=0; j<baubles.length; j++){
+            loadBauble(j);
+            loadArticle(j);
+        }
 
+        function loadBauble(j){
+            var baubleImage = new Image();
+            baubleImage.src = "http://myy.haaga-helia.fi/~a1704538/images/"+j+"a.png";
+            baubleImage.onload = function(){
+                 baubles.item(j).style.background = "url('http://myy.haaga-helia.fi/~a1704538/images/"+j+"a.png')";
+            }
+            baubleImage.onerror = function(){
+                 baubles.item(j).style.background = "url('http://myy.haaga-helia.fi/~a1704538/images/"+j+"a.jpg')";
+            }
+               
+        }
+        
+        function loadArticle(j){
+            var articleImage = new Image();
+            articleImage.src = "http://myy.haaga-helia.fi/~a1704538/images/"+j+"a.png";
+            articleImage.onload = function(){
+                articles.item(j).style.background = "url('http:myy.haaga-helia.fi/~a1704538/images/"+(j)+".png')";
+            }
+            articleImage.onerror = function(){
+                 articles.item(j).style.background = "url('http:myy.haaga-helia.fi/~a1704538/images/"+(j+1)+".png')";
+            }      
+        }
     </script>
          
 </body>
