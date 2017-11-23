@@ -44,7 +44,7 @@
         document.getElementById("adventBoxes").innerHTML = adventBoxesHTML;
         var baubles = document.getElementsByClassName("bauble");
         var articles = document.getElementsByClassName("box");
-        console.log(articles);
+     
         //use j, no reason to use multiple vars and eat memory. articles and baubles will always be same length
         for(var j=0; j<baubles.length; j++){
             loadBauble(j);
@@ -70,7 +70,7 @@
                 articles.item(j).style.background = "url('http:myy.haaga-helia.fi/~a1704538/images/"+(j)+".png')";
             }
             articleImage.onerror = function(){
-                 articles.item(j).style.background = "url('http:myy.haaga-helia.fi/~a1704538/images/"+(j+1)+".png')";
+                 articles.item(j).style.background = "url('http:myy.haaga-helia.fi/~a1704538/images/"+(j+1)+".jpg')";
             }      
         }
     </script>
